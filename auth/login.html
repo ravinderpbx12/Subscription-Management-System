@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Login</title>
+    <link rel="stylesheet" href="../dashboard.css">
+</head>
+<body>
+
+    <main class="auth-container">
+        <section class="auth-card">
+            <h1>Brightloop</h1>
+            <p>Welcome back! Sign in to your account.</p>
+
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+
+                <button type="submit" id="loginBtn">Sign In</button>
+                <p id="authMessage"></p>
+            </form>
+
+            <p>Don't have an account?
+                <a href="register.html">Create one</a>
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
