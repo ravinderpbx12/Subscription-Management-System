@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <a class="brand" href="dashboard.html">
+        <span class="logo">B</span>
+        <span><b>brightloop</b><small>SUBSCRIPTION CLOUD</small></span>
+    </a>
+
+    <p class="nav-label">WORKSPACE</p>
+    <nav>
+        <a class="active" href="dashboard.html">▦ &nbsp; Overview</a>
+        <a href="subscriptions.html">◷ &nbsp; Subscriptions</a>
+        <a href="customers.html">♙ &nbsp; Customers</a>
+        <a href="products.html">◇ &nbsp; Products</a>
+        <a href="plans.html">▤ &nbsp; Plans</a>
+        <a href="quotations.html">▧ &nbsp; Quotations</a>
+    </nav>
+
+    <p class="nav-label">BILLING</p>
+    <nav>
+        <a href="invoices.html">▨ &nbsp; Invoices</a>
+        <a href="payments.html">⇄ &nbsp; Payments</a>
+        <a href="discounts.html">％ &nbsp; Discounts</a>
+    </nav>
+
+    <p class="nav-label">INSIGHTS & SETTINGS</p>
+    <nav>
+        <a href="reports.html">▥ &nbsp; Reports</a>
+        <a href="users.html">♧ &nbsp; Team members</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <div class="help">
+            <b>Need a hand?</b>
+            <p>Visit the help centre for tips and guides.</p>
+            <a href="mailto:support@example.com">Get support ↗</a>
+        </div>
+
+        <div class="user">
+            <span>AD</span>
+            <div><b>Admin Demo</b><small>Administrator</small></div>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <header class="topbar">
+        <button id="menu" class="menu">☰</button>
+        <div>Workspace <span>/</span> <b>Overview</b></div>
+        <div class="top-right">
+            <span class="demo"><i></i> Demo workspace</span>
+            <span class="avatar">AD</span>
+        </div>
+    </header>
+
+    <div class="content">
+
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">WORKSPACE OVERVIEW</p>
+                <h1>Good morning, Admin <em>✦</em></h1>
+                <p class="muted">Here's what's happening with your subscriptions today.</p>
+            </div>
+
+            <div class="actions">
+                <button class="secondary" id="export">↓ Export report</button>
+                <button class="primary" id="create">＋ Create subscription</button>
+            </div>
+        </section>
+
+        <div class="notice" id="notice">
+            <b>✦</b>
+            <span><strong>Your workspace is ready.</strong> Set up products and plans to get started.</span>
+            <a href="products.html">Set up products →</a>
+            <button id="closeNotice">×</button>
+        </div>
+
+        <section class="section-title">
+            <div>
+                <h2>Business overview</h2>
+                <p>Key metrics across your subscription business</p>
+            </div>
+            <button class="filter" id="filter">◷ Last 30 days⌄</button>
+        </section>
+
+        <section class="metrics">
+            <article class="metric">
+                <div class="metric-head">Active subscriptions <span class="ico purple">◷</span></div>
+                <strong>128</strong>
+                <p><b class="up">↗ 12.8%</b> vs. previous month</p>
+                <div class="spark purple-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="metric">
+                <div class="metric-head">Monthly recurring revenue <span class="ico green">₹</span></div>
+                <strong>₹8,42,500</strong>
+                <p><b class="up">↗ 8.4%</b> vs. previous month</p>
+                <div class="spark green-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="metric">
+                <div class="metric-head">Payments collected <span class="ico blue">↙</span></div>
+                <strong>₹6,74,200</strong>
+                <p><b class="up">↗ 6.2%</b> vs. previous month</p>
+                <div class="spark blue-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+
+            <article class="metric">
+                <div class="metric-head">Outstanding invoices <span class="ico orange">!</span></div>
+                <strong>₹1,68,300</strong>
+                <p><b class="down">3 overdue</b> needs attention</p>
+                <div class="spark orange-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </article>
+        </section>
+
+        <section class="columns">
+
+            <article class="panel revenue">
+                <div class="panel-title">
+                    <div>
+                        <h3>Revenue overview</h3>
+                        <p>Collected revenue over the last 7 months</p>
+                    </div>
+                    <span class="legend">● Revenue</span>
+                </div>
+
+                <div class="total">
+                    ₹6,74,200
+                    <small class="up">↗ 6.2%</small>
+                    <p>Collected this month</p>
+                </div>
+
+                <div class="chart">
+                    <div class="y-axis">
+                        <span>10L</span><span>7.5L</span><span>5L</span><span>2.5L</span><span>0</span>
+                    </div>
+
+                    <div class="plot">
+                        <div class="grid"><i></i><i></i><i></i><i></i><i></i></div>
+                        <div class="bars">
+                            <div style="--h:38%"><b></b><small>Apr</small></div>
+                            <div style="--h:48%"><b></b><small>May</small></div>
+                            <div style="--h:44%"><b></b><small>Jun</small></div>
+                            <div style="--h:61%"><b></b><small>Jul</small></div>
+                            <div style="--h:57%"><b></b><small>Aug</small></div>
+                            <div style="--h:75%"><b></b><small>Sep</small></div>
+                            <div class="current" style="--h:68%"><b></b><small>Oct</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="demo-note">Illustrative demo figures. Live metrics will be connected to Firestore.</p>
+            </article>
+
+            <article class="panel invoice">
+                <div class="panel-title">
+                    <div>
+                        <h3>Invoice status</h3>
+                        <p>Current billing cycle</p>
+                    </div>
+                    <a href="invoices.html">View all →</a>
+                </div>
+
+                <div class="donut">
+                    <div><b>246</b><small>Total invoices</small></div>
+                </div>
+
+                <div class="status">
+                    <p><span><i class="paid"></i>Paid</span><b>186 <small>75.6%</small></b></p>
+                    <p><span><i class="pending"></i>Outstanding</span><b>42 <small>17.1%</small></b></p>
+                    <p><span><i class="overdue"></i>Overdue</span><b>18 <small>7.3%</small></b></p>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="panel activity">
+            <div class="panel-title">
+                <div>
+                    <h3>Recent activity</h3>
+                    <p>Latest updates across your workspace</p>
+                </div>
+                <a href="subscriptions.html">View subscriptions →</a>
+            </div>
+
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr><th>ACTIVITY</th><th>CUSTOMER</th><th>DATE</th><th>STATUS</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="event purple-event">＋</span><b>New subscription</b></td>
+                            <td>Acme Retail Pvt. Ltd.</td>
+                            <td>31 Oct 2026</td>
+                            <td><label class="success">Active</label></td>
+                        </tr>
+                        <tr>
+                            <td><span class="event green-event">₹</span><b>Payment received</b></td>
+                            <td>Northstar Studios</td>
+                            <td>30 Oct 2026</td>
+                            <td><label class="success">Paid</label></td>
+                        </tr>
+                        <tr>
+                            <td><span class="event blue-event">▤</span><b>Invoice generated</b></td>
+                            <td>Urban Goods Co.</td>
+                            <td>30 Oct 2026</td>
+                            <td><label class="warning">Pending</label></td>
+                        </tr>
+                        <tr>
+                            <td><span class="event orange-event">％</span><b>Discount applied</b></td>
+                            <td>Pixelwave Design</td>
+                            <td>29 Oct 2026</td>
+                            <td><label class="success">Applied</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Brightloop Software
+            <span>Subscription Management System · Demo interface</span>
+        </footer>
+
+    </div>
+</main>
+
+</body>
+</html>
