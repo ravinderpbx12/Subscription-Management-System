@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics | Brightloop</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="reports-page">
+        <header class="reports-header">
+            <div>
+                <p class="reports-eyebrow">BRIGHTLOOP / ANALYTICS</p>
+                <h1>Reports & Analytics</h1>
+                <p class="reports-subtitle">
+                    Monitor subscriptions, invoices, customers and recorded payments.
+                </p>
+            </div>
+
+            <div class="reports-actions">
+                <button id="refreshReports" class="report-btn secondary">
+                    Refresh
+                </button>
+                <button id="exportReports" class="report-btn primary">
+                    Export CSV
+                </button>
+            </div>
+        </header>
+
+        <p id="reportMessage" class="report-message" aria-live="polite">
+            Loading reports...
+        </p>
+
+        <section class="report-metrics">
+            <article class="report-card">
+                <span>Total Customers</span>
+                <strong id="totalCustomers">—</strong>
+                <small>Registered customers</small>
+            </article>
+
+            <article class="report-card">
+                <span>Active Subscriptions</span>
+                <strong id="activeSubscriptions">—</strong>
+                <small>Currently active</small>
+            </article>
+
+            <article class="report-card">
+                <span>Recorded Payments</span>
+                <strong id="totalRevenue">—</strong>
+                <small>Completed payment records</small>
+            </article>
+
+            <article class="report-card">
+                <span>Pending Invoices</span>
+                <strong id="pendingInvoices">—</strong>
+                <small>Unpaid invoice balance</small>
+            </article>
+        </section>
+
+        <section class="reports-grid">
+            <article class="report-panel">
+                <div class="report-panel-heading">
+                    <div>
+                        <h2>Monthly Recorded Payments</h2>
+                        <p>Completed payments grouped by month</p>
+                    </div>
+                </div>
+
+                <div id="monthlyRevenueChart" class="monthly-chart">
+                    <p class="chart-empty">Loading chart...</p>
+                </div>
+            </article>
+
+            <article class="report-panel">
+                <div class="report-panel-heading">
+                    <div>
+                        <h2>Subscription Overview</h2>
+                        <p>Distribution by subscription status</p>
+                    </div>
+                </div>
+
+                <div id="subscriptionBreakdown" class="breakdown-list">
+                    <p class="chart-empty">Loading...</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="reports-grid">
+            <article class="report-panel">
+                <div class="report-panel-heading">
+                    <div>
+                        <h2>Invoice Overview</h2>
+                        <p>Distribution by invoice status</p>
+                    </div>
+                </div>
+
+                <div id="invoiceBreakdown" class="breakdown-list">
+                    <p class="chart-empty">Loading...</p>
+                </div>
+            </article>
+
+            <article class="report-panel">
+                <div class="report-panel-heading">
+                    <div>
+                        <h2>Payment Overview</h2>
+                        <p>Recorded payment status</p>
+                    </div>
+                </div>
+
+                <div id="paymentBreakdown" class="breakdown-list">
+                    <p class="chart-empty">Loading...</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="report-panel recent-payments-panel">
+            <div class="report-panel-heading">
+                <div>
+                    <h2>Recent Payments</h2>
+                    <p>Latest recorded payment entries</p>
+                </div>
+            </div>
+
+            <div class="report-table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Method</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentPayments">
+                        <tr>
+                            <td colspan="6">Loading payments...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="js/reports.js"></script>
+</body>
+</html>

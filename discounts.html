@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discounts | Brightloop</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script type="module" src="js/discounts.js"></script>
+</head>
+
+<body>
+<div class="dashboard-layout">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <h2>Brightloop</h2>
+            <span>Subscription Management</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="customers.html">Customers</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Plans</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html">Payments</a>
+            <a href="discounts.html" class="active">Discounts</a>
+            <a href="reports.html">Reports</a>
+            <a href="users.html">Users</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <h2>Discount Management</h2>
+        </header>
+
+        <section class="page-heading">
+            <div>
+                <h1>Discounts & Coupons</h1>
+                <p>Create promotional offers and manage discount codes.</p>
+            </div>
+
+            <button class="primary-btn" id="openDiscountModal">
+                + Create Discount
+            </button>
+        </section>
+
+        <section class="discount-stats">
+
+            <div class="stat-card">
+                <span>Total Discounts</span>
+                <h2 id="totalDiscounts">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Active Discounts</span>
+                <h2 id="activeDiscounts">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Inactive Discounts</span>
+                <h2 id="inactiveDiscounts">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Total Redemptions</span>
+                <h2 id="totalRedemptions">0</h2>
+            </div>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="table-toolbar">
+
+                <input
+                    type="search"
+                    id="discountSearch"
+                    placeholder="Search discount name or code..."
+                >
+
+                <select id="discountStatusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="data-table">
+
+                    <thead>
+                        <tr>
+                            <th>Discount Name</th>
+                            <th>Coupon Code</th>
+                            <th>Type</th>
+                            <th>Value</th>
+                            <th>Validity</th>
+                            <th>Usage</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="discountTableBody">
+                        <tr>
+                            <td colspan="8">Loading discounts...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+
+<!-- DISCOUNT MODAL -->
+
+<div class="modal-overlay" id="discountModal">
+
+    <div class="modal discount-modal">
+
+        <div class="modal-header">
+            <h2 id="discountModalTitle">Create Discount</h2>
+            <button type="button" id="closeDiscountModal">✕</button>
+        </div>
+
+        <form id="discountForm">
+
+            <input type="hidden" id="discountId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Discount Name</label>
+                    <input
+                        type="text"
+                        id="discountName"
+                        maxlength="80"
+                        placeholder="Summer Special"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Coupon Code</label>
+                    <input
+                        type="text"
+                        id="discountCode"
+                        maxlength="30"
+                        placeholder="SUMMER20"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Discount Type</label>
+                    <select id="discountType" required>
+                        <option value="percentage">Percentage</option>
+                        <option value="fixed">Fixed Amount (₹)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Discount Value</label>
+                    <input
+                        type="number"
+                        id="discountValue"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Minimum Purchase (₹)</label>
+                    <input
+                        type="number"
+                        id="minimumPurchase"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Maximum Discount (₹)</label>
+                    <input
+                        type="number"
+                        id="maximumDiscount"
+                        min="0"
+                        step="0.01"
+                        placeholder="Optional"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="date" id="discountStartDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="date" id="discountEndDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Maximum Redemptions</label>
+                    <input
+                        type="number"
+                        id="maximumRedemptions"
+                        min="1"
+                        step="1"
+                        placeholder="Leave empty for unlimited"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="discountStatus">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea
+                    id="discountDescription"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Describe this promotional offer..."
+                ></textarea>
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelDiscount"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="saveDiscount"
+                >
+                    Save Discount
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
