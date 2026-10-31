@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Register</title>
+    <link rel="stylesheet" href="../dashboard.css">
+</head>
+<body>
+
+    <main class="auth-container">
+        <section class="auth-card">
+            <h1>Create Account</h1>
+            <p>Join Brightloop Subscription Management.</p>
+
+            <form id="registerForm">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" minlength="6" required>
+
+                <button type="submit" id="registerBtn">Create Account</button>
+                <p id="authMessage"></p>
+            </form>
+
+            <p>Already registered?
+                <a href="login.html">Sign in</a>
+            </p>
+        </section>
+    </main>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
