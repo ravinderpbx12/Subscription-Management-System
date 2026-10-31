@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | Brightloop</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <main class="settings-page">
+        <header class="settings-header">
+            <div>
+                <p class="settings-eyebrow">BRIGHTLOOP / ACCOUNT</p>
+                <h1>Settings</h1>
+                <p>Manage your profile and account preferences.</p>
+            </div>
+        </header>
+
+        <p id="settingsMessage" class="settings-message" aria-live="polite"></p>
+
+        <section class="settings-card">
+            <div class="settings-card-heading">
+                <h2>Profile Information</h2>
+                <p>Update the information associated with your account.</p>
+            </div>
+
+            <form id="profileForm">
+                <div class="profile-avatar" id="profileAvatar">U</div>
+
+                <div class="settings-field">
+                    <label for="displayName">Display Name</label>
+                    <input
+                        type="text"
+                        id="displayName"
+                        maxlength="60"
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+
+                <div class="settings-field">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" disabled>
+                    <small>Email changes are not supported in this module.</small>
+                </div>
+
+                <div class="settings-field">
+                    <label for="userId">Account ID</label>
+                    <input type="text" id="userId" disabled>
+                </div>
+
+                <button type="submit" class="settings-btn primary">
+                    Save Profile
+                </button>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-heading">
+                <h2>Account Security</h2>
+                <p>Manage your account access.</p>
+            </div>
+
+            <div class="settings-action-row">
+                <div>
+                    <strong>Password</strong>
+                    <p>Send a password reset email to your registered address.</p>
+                </div>
+
+                <button type="button" id="resetPassword"
+                    class="settings-btn secondary">
+                    Reset Password
+                </button>
+            </div>
+
+            <div class="settings-action-row">
+                <div>
+                    <strong>Sign Out</strong>
+                    <p>Sign out of your Brightloop account.</p>
+                </div>
+
+                <button type="button" id="logoutButton"
+                    class="settings-btn danger">
+                    Sign Out
+                </button>
+            </div>
+        </section>
+
+        <section class="settings-card">
+            <div class="settings-card-heading">
+                <h2>Application Information</h2>
+                <p>Basic information about Brightloop.</p>
+            </div>
+
+            <div class="settings-info-row">
+                <span>Application</span>
+                <strong>Brightloop</strong>
+            </div>
+
+            <div class="settings-info-row">
+                <span>Version</span>
+                <strong>1.0.0</strong>
+            </div>
+
+            <div class="settings-info-row">
+                <span>Platform</span>
+                <strong>Subscription Management System</strong>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/settings.js"></script>
+</body>
+</html>

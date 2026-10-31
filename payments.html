@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments | Brightloop</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script type="module" src="js/payments.js"></script>
+</head>
+
+<body>
+<div class="dashboard-layout">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <h2>Brightloop</h2>
+            <span>Subscription Management</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="customers.html">Customers</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Plans</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="invoices.html">Invoices</a>
+            <a href="payments.html" class="active">Payments</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="reports.html">Reports</a>
+            <a href="users.html">Users</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <h2>Payment Management</h2>
+        </header>
+
+        <section class="page-heading">
+            <div>
+                <h1>Payments</h1>
+                <p>Track and manage customer payment records.</p>
+            </div>
+
+            <button class="primary-btn" id="openPaymentModal">
+                + Record Payment
+            </button>
+        </section>
+
+        <section class="payment-stats">
+
+            <div class="stat-card">
+                <span>Total Records</span>
+                <h2 id="totalPayments">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Completed Amount</span>
+                <h2 id="completedAmount">₹0.00</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Pending Payments</span>
+                <h2 id="pendingPayments">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Failed Payments</span>
+                <h2 id="failedPayments">0</h2>
+            </div>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="table-toolbar">
+
+                <input
+                    type="search"
+                    id="paymentSearch"
+                    placeholder="Search payment, invoice or customer..."
+                >
+
+                <select id="paymentStatusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                    <option value="failed">Failed</option>
+                    <option value="refunded">Refunded</option>
+                </select>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+
+                    <thead>
+                        <tr>
+                            <th>Payment ID</th>
+                            <th>Invoice</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Method</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="paymentTableBody">
+                        <tr>
+                            <td colspan="8">Loading payments...</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div class="modal-overlay" id="paymentModal">
+
+    <div class="modal payment-modal">
+
+        <div class="modal-header">
+            <h2 id="paymentModalTitle">Record Payment</h2>
+            <button type="button" id="closePaymentModal">✕</button>
+        </div>
+
+        <form id="paymentForm">
+
+            <input type="hidden" id="paymentId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Invoice</label>
+
+                    <select id="paymentInvoice" required>
+                        <option value="">Select Invoice</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment ID</label>
+                    <input type="text" id="paymentNumber" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Date</label>
+                    <input type="date" id="paymentDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount (₹)</label>
+                    <input
+                        type="number"
+                        id="paymentAmount"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Method</label>
+
+                    <select id="paymentMethod" required>
+                        <option value="">Select Method</option>
+                        <option value="upi">UPI</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="cash">Cash</option>
+                        <option value="cheque">Cheque</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+
+                    <select id="paymentStatus" required>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                        <option value="refunded">Refunded</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Transaction Reference</label>
+
+                    <input
+                        type="text"
+                        id="paymentReference"
+                        maxlength="100"
+                        placeholder="Optional reference number"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Notes</label>
+
+                <textarea
+                    id="paymentNotes"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Additional payment information..."
+                ></textarea>
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="secondary-btn" id="cancelPayment">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn" id="savePayment">
+                    Save Payment
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices | Brightloop</title>
+    <link rel="stylesheet" href="dashboard.css">
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script type="module" src="js/invoices.js"></script>
+</head>
+
+<body>
+<div class="dashboard-layout">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <h2>Brightloop</h2>
+            <span>Subscription Management</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="subscriptions.html">Subscriptions</a>
+            <a href="customers.html">Customers</a>
+            <a href="products.html">Products</a>
+            <a href="plans.html">Plans</a>
+            <a href="quotations.html">Quotations</a>
+            <a href="invoices.html" class="active">Invoices</a>
+            <a href="payments.html">Payments</a>
+            <a href="discounts.html">Discounts</a>
+            <a href="reports.html">Reports</a>
+            <a href="users.html">Users</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <h2>Invoice Management</h2>
+        </header>
+
+        <section class="page-heading">
+            <div>
+                <h1>Invoices</h1>
+                <p>Create and manage customer invoices.</p>
+            </div>
+
+            <button class="primary-btn" id="openInvoiceModal">
+                + Create Invoice
+            </button>
+        </section>
+
+        <section class="invoice-stats">
+            <div class="stat-card">
+                <span>Total Invoices</span>
+                <h2 id="totalInvoices">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Paid</span>
+                <h2 id="paidInvoices">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Pending</span>
+                <h2 id="pendingInvoices">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Total Amount</span>
+                <h2 id="totalInvoiceAmount">₹0.00</h2>
+            </div>
+        </section>
+
+        <section class="content-card">
+
+            <div class="table-toolbar">
+                <input
+                    type="search"
+                    id="invoiceSearch"
+                    placeholder="Search invoice or customer..."
+                >
+
+                <select id="invoiceStatusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="draft">Draft</option>
+                    <option value="sent">Sent</option>
+                    <option value="paid">Paid</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Invoice No.</th>
+                            <th>Customer</th>
+                            <th>Issue Date</th>
+                            <th>Due Date</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="invoiceTableBody">
+                        <tr>
+                            <td colspan="7">Loading invoices...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+
+<!-- INVOICE MODAL -->
+<div class="modal-overlay" id="invoiceModal">
+
+    <div class="modal invoice-modal">
+
+        <div class="modal-header">
+            <h2 id="invoiceModalTitle">Create Invoice</h2>
+            <button type="button" id="closeInvoiceModal">✕</button>
+        </div>
+
+        <form id="invoiceForm">
+
+            <input type="hidden" id="invoiceId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Customer</label>
+                    <select id="invoiceCustomer" required>
+                        <option value="">Select Customer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Invoice Number</label>
+                    <input type="text" id="invoiceNumber" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Issue Date</label>
+                    <input type="date" id="issueDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" id="dueDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="invoiceStatus">
+                        <option value="draft">Draft</option>
+                        <option value="sent">Sent</option>
+                        <option value="paid">Paid</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tax (%)</label>
+                    <input
+                        type="number"
+                        id="invoiceTax"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        value="0"
+                    >
+                </div>
+
+            </div>
+
+            <h3 class="invoice-section-title">Invoice Items</h3>
+
+            <div class="invoice-items-header">
+                <span>Item Description</span>
+                <span>Quantity</span>
+                <span>Unit Price (₹)</span>
+                <span></span>
+            </div>
+
+            <div id="invoiceItems"></div>
+
+            <button type="button" class="secondary-btn" id="addInvoiceItem">
+                + Add Item
+            </button>
+
+            <div class="invoice-total-box">
+                <p>Subtotal: <strong id="invoiceSubtotal">₹0.00</strong></p>
+                <p>Tax: <strong id="invoiceTaxAmount">₹0.00</strong></p>
+                <h3>Total: <strong id="invoiceGrandTotal">₹0.00</strong></h3>
+            </div>
+
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea
+                    id="invoiceNotes"
+                    rows="3"
+                    placeholder="Additional information..."
+                ></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn" id="cancelInvoice">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn" id="saveInvoice">
+                    Save Invoice
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

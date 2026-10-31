@@ -17,25 +17,27 @@
 
     <p class="nav-label">WORKSPACE</p>
     <nav>
-        <a class="active" href="dashboard.html">▦ &nbsp; Overview</a>
-        <a href="subscriptions.html">◷ &nbsp; Subscriptions</a>
-        <a href="customers.html">♙ &nbsp; Customers</a>
-        <a href="products.html">◇ &nbsp; Products</a>
-        <a href="plans.html">▤ &nbsp; Plans</a>
+        <a class="active" href="dashboard.html">Overview</a>
+        <a href="subscriptions.html">Subscriptions</a>
+        <a href="customers.html">Customers</a>
+        <a href="products.html">Products</a>
+        <a href="plans.html">Subscription Plans</a>
         <a href="quotations.html">▧ &nbsp; Quotations</a>
     </nav>
 
     <p class="nav-label">BILLING</p>
     <nav>
-        <a href="invoices.html">▨ &nbsp; Invoices</a>
-        <a href="payments.html">⇄ &nbsp; Payments</a>
-        <a href="discounts.html">％ &nbsp; Discounts</a>
+        <a href="invoices.html">Invoices</a>
+        <a href="payments.html">Payments</a>
+        <a href="discounts.html">Discounts</a>
     </nav>
 
     <p class="nav-label">INSIGHTS & SETTINGS</p>
     <nav>
-        <a href="reports.html">▥ &nbsp; Reports</a>
+        <a href="reports.html">Reports & Analytics</a>
         <a href="users.html">♧ &nbsp; Team members</a>
+        <a href="settings.html">Settings</a>
+        <a href="notifications.html">Notifications</a>
     </nav>
 
     <div class="sidebar-bottom">
@@ -49,6 +51,11 @@
             <span>AD</span>
             <div><b>Admin Demo</b><small>Administrator</small></div>
         </div>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
     </div>
 </aside>
 
@@ -236,6 +243,8 @@
 </main>
 
 <script type="module" src="firebase.js"></script>
+<script type="module" src="js/auth-guard.js"></script>
+<script type="module" src="js/logout.js"></script>
 
 </body>
 </html>

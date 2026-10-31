@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Subscription Plans</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<main class="plans-page">
+
+    <header class="plans-header">
+        <div>
+            <h1>Subscription Plans</h1>
+            <p>Create and manage your subscription packages.</p>
+        </div>
+
+        <button id="addPlanBtn">+ Create Plan</button>
+    </header>
+
+    <section class="plans-stats">
+        <div class="plan-stat">
+            <span>Total Plans</span>
+            <h2 id="totalPlans">0</h2>
+        </div>
+
+        <div class="plan-stat">
+            <span>Active Plans</span>
+            <h2 id="activePlans">0</h2>
+        </div>
+
+        <div class="plan-stat">
+            <span>Inactive Plans</span>
+            <h2 id="inactivePlans">0</h2>
+        </div>
+    </section>
+
+    <section class="plans-toolbar">
+        <input
+            type="search"
+            id="searchPlan"
+            placeholder="Search plans..."
+        >
+
+        <select id="planStatusFilter">
+            <option value="all">All Plans</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+        </select>
+    </section>
+
+    <section class="plans-grid" id="plansGrid">
+        <p>Loading plans...</p>
+    </section>
+
+</main>
+
+<!-- PLAN MODAL -->
+
+<div class="plan-modal" id="planModal">
+
+    <div class="plan-modal-content">
+
+        <h2 id="planModalTitle">Create Subscription Plan</h2>
+
+        <form id="planForm">
+
+            <input type="hidden" id="planId">
+
+            <label for="planName">Plan Name</label>
+            <input type="text" id="planName" maxlength="100" required>
+
+            <label for="planProduct">Associated Product</label>
+            <select id="planProduct" required>
+                <option value="">Select Product</option>
+            </select>
+
+            <label for="planDescription">Description</label>
+            <textarea id="planDescription" maxlength="500" rows="3"></textarea>
+
+            <label for="planPrice">Price (INR)</label>
+            <input
+                type="number"
+                id="planPrice"
+                min="0"
+                step="0.01"
+                required
+            >
+
+            <label for="billingInterval">Billing Interval</label>
+            <select id="billingInterval" required>
+                <option value="monthly">Monthly</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="yearly">Yearly</option>
+            </select>
+
+            <label for="trialDays">Free Trial (Days)</label>
+            <input
+                type="number"
+                id="trialDays"
+                min="0"
+                max="365"
+                value="0"
+                required
+            >
+
+            <label for="planFeatures">Plan Features</label>
+            <textarea
+                id="planFeatures"
+                placeholder="Enter one feature per line"
+                rows="5"
+            ></textarea>
+
+            <label for="planStatus">Status</label>
+            <select id="planStatus">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+
+            <div class="plan-form-actions">
+                <button type="submit" id="savePlanBtn">Save Plan</button>
+                <button type="button" id="closePlanModal">Cancel</button>
+            </div>
+
+            <p id="planMessage" aria-live="polite"></p>
+
+        </form>
+
+    </div>
+</div>
+
+<script type="module" src="js/auth-guard.js"></script>
+<script type="module" src="js/plans.js"></script>
+
+</body>
+</html>

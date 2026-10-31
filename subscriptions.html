@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Subscriptions</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<main class="subscription-page">
+
+    <header class="subscription-header">
+        <div>
+            <h1>Subscriptions</h1>
+            <p>Manage customer subscriptions and renewals.</p>
+        </div>
+
+        <button id="addSubscriptionBtn">+ Create Subscription</button>
+    </header>
+
+    <section class="subscription-stats">
+        <div class="subscription-stat">
+            <span>Total Subscriptions</span>
+            <h2 id="totalSubscriptions">0</h2>
+        </div>
+
+        <div class="subscription-stat">
+            <span>Active</span>
+            <h2 id="activeSubscriptions">0</h2>
+        </div>
+
+        <div class="subscription-stat">
+            <span>Trial</span>
+            <h2 id="trialSubscriptions">0</h2>
+        </div>
+
+        <div class="subscription-stat">
+            <span>Cancelled</span>
+            <h2 id="cancelledSubscriptions">0</h2>
+        </div>
+    </section>
+
+    <section class="subscription-toolbar">
+        <input
+            type="search"
+            id="searchSubscription"
+            placeholder="Search customer..."
+        >
+
+        <select id="subscriptionStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="active">Active</option>
+            <option value="trial">Trial</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="expired">Expired</option>
+        </select>
+    </section>
+
+    <section class="subscription-table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Plan</th>
+                    <th>Price</th>
+                    <th>Start Date</th>
+                    <th>Next Billing</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="subscriptionTableBody">
+                <tr>
+                    <td colspan="8">Loading subscriptions...</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<!-- SUBSCRIPTION MODAL -->
+
+<div class="subscription-modal" id="subscriptionModal">
+
+    <div class="subscription-modal-content">
+
+        <h2 id="subscriptionModalTitle">Create Subscription</h2>
+
+        <form id="subscriptionForm">
+
+            <input type="hidden" id="subscriptionId">
+
+            <label for="subscriptionCustomer">Customer</label>
+            <select id="subscriptionCustomer" required>
+                <option value="">Select Customer</option>
+            </select>
+
+            <label for="subscriptionProduct">Product</label>
+            <select id="subscriptionProduct" required>
+                <option value="">Select Product</option>
+            </select>
+
+            <label for="subscriptionPlan">Plan</label>
+            <select id="subscriptionPlan" required>
+                <option value="">Select Plan</option>
+            </select>
+
+            <label for="subscriptionStart">Start Date</label>
+            <input type="date" id="subscriptionStart" required>
+
+            <label for="subscriptionStatus">Status</label>
+            <select id="subscriptionStatus" required>
+                <option value="active">Active</option>
+                <option value="trial">Trial</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="expired">Expired</option>
+            </select>
+
+            <div class="subscription-form-actions">
+                <button type="submit" id="saveSubscriptionBtn">
+                    Save Subscription
+                </button>
+
+                <button type="button" id="closeSubscriptionModal">
+                    Cancel
+                </button>
+            </div>
+
+            <p id="subscriptionMessage" aria-live="polite"></p>
+
+        </form>
+
+    </div>
+</div>
+
+<script type="module" src="js/auth-guard.js"></script>
+<script type="module" src="js/subscriptions.js"></script>
+
+</body>
+</html>

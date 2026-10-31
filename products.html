@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Products</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <main class="product-page">
+
+        <header class="product-header">
+            <div>
+                <h1>Products</h1>
+                <p>Manage the products and services offered by your business.</p>
+            </div>
+
+            <button id="addProductBtn">+ Add Product</button>
+        </header>
+
+        <section class="product-stats">
+            <div class="product-stat">
+                <span>Total Products</span>
+                <h2 id="totalProducts">0</h2>
+            </div>
+
+            <div class="product-stat">
+                <span>Active Products</span>
+                <h2 id="activeProducts">0</h2>
+            </div>
+
+            <div class="product-stat">
+                <span>Inactive Products</span>
+                <h2 id="inactiveProducts">0</h2>
+            </div>
+        </section>
+
+        <section class="product-toolbar">
+            <input
+                type="search"
+                id="searchProduct"
+                placeholder="Search products..."
+            >
+
+            <select id="productStatusFilter">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </section>
+
+        <section class="product-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="productTableBody">
+                    <tr>
+                        <td colspan="6">Loading products...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-content">
+
+            <h2 id="productModalTitle">Add Product</h2>
+
+            <form id="productForm">
+
+                <input type="hidden" id="productId">
+
+                <label for="productName">Product Name</label>
+                <input type="text" id="productName" maxlength="100" required>
+
+                <label for="productCode">Product Code</label>
+                <input type="text" id="productCode" maxlength="30" required>
+
+                <label for="productCategory">Category</label>
+                <input type="text" id="productCategory" maxlength="60" required>
+
+                <label for="productDescription">Description</label>
+                <textarea
+                    id="productDescription"
+                    maxlength="500"
+                    rows="4"
+                ></textarea>
+
+                <label for="productStatus">Status</label>
+                <select id="productStatus" required>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+                <div class="product-form-actions">
+                    <button type="submit" id="saveProductBtn">
+                        Save Product
+                    </button>
+
+                    <button type="button" id="closeProductModal">
+                        Cancel
+                    </button>
+                </div>
+
+                <p id="productMessage" aria-live="polite"></p>
+
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script type="module" src="js/products.js"></script>
+
+</body>
+</html>

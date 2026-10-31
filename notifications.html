@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications | Brightloop</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<main class="notifications-page">
+
+    <header class="notifications-header">
+        <div>
+            <p class="notifications-eyebrow">BRIGHTLOOP / UPDATES</p>
+            <h1>Notifications</h1>
+            <p>Stay updated with your account activity.</p>
+        </div>
+
+        <button id="markAllRead" class="notification-btn primary">
+            Mark All as Read
+        </button>
+    </header>
+
+    <p id="notificationMessage" class="notification-message"
+       aria-live="polite"></p>
+
+    <section class="notification-card">
+        <div class="notification-section-heading">
+            <div>
+                <h2>Your Notifications</h2>
+                <p id="unreadCount">Unread: 0</p>
+            </div>
+
+            <button id="refreshNotifications"
+                    class="notification-btn secondary">
+                Refresh
+            </button>
+        </div>
+
+        <div id="notificationsList" class="notifications-list">
+            <p class="notification-empty">Loading notifications...</p>
+        </div>
+    </section>
+
+    <section class="notification-card">
+        <div class="notification-section-heading">
+            <div>
+                <h2>Activity Log</h2>
+                <p>A record of recent account activities.</p>
+            </div>
+        </div>
+
+        <div id="activityList" class="activity-list">
+            <p class="notification-empty">Loading activity...</p>
+        </div>
+    </section>
+
+</main>
+
+<script type="module" src="js/notifications.js"></script>
+</body>
+</html>
