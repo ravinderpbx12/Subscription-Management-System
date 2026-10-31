@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightloop | Customers</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <main class="customer-page">
+
+        <header class="customer-header">
+            <div>
+                <h1>Customers</h1>
+                <p>Manage your customer records.</p>
+            </div>
+
+            <button id="addCustomerBtn">+ Add Customer</button>
+        </header>
+
+        <section class="customer-stats">
+            <div class="customer-stat">
+                <span>Total Customers</span>
+                <h2 id="totalCustomers">0</h2>
+            </div>
+
+            <div class="customer-stat">
+                <span>Active Customers</span>
+                <h2 id="activeCustomers">0</h2>
+            </div>
+        </section>
+
+        <section class="customer-toolbar">
+            <input
+                type="search"
+                id="searchCustomer"
+                placeholder="Search by name or email..."
+            >
+
+            <select id="statusFilter">
+                <option value="all">All Customers</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </section>
+
+        <section class="customer-table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="customerTableBody">
+                    <tr>
+                        <td colspan="6">Loading customers...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Customer Form -->
+    <div id="customerModal" class="customer-modal">
+        <div class="customer-modal-content">
+
+            <h2 id="modalTitle">Add Customer</h2>
+
+            <form id="customerForm">
+
+                <input type="hidden" id="customerId">
+
+                <label>Full Name</label>
+                <input type="text" id="customerName" required>
+
+                <label>Email Address</label>
+                <input type="email" id="customerEmail" required>
+
+                <label>Phone Number</label>
+                <input type="tel" id="customerPhone">
+
+                <label>Company</label>
+                <input type="text" id="customerCompany">
+
+                <label>Status</label>
+                <select id="customerStatus">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+                <div class="customer-form-actions">
+                    <button type="submit">Save Customer</button>
+                    <button type="button" id="closeModalBtn">Cancel</button>
+                </div>
+
+                <p id="customerMessage" aria-live="polite"></p>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script type="module" src="js/auth-guard.js"></script>
+    <script type="module" src="js/customers.js"></script>
+
+</body>
+</html>
